@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>Comprehensive BeautifulSoup Showcase</h1>
+
+    <section id="text-elements">
+        <h2>Text Elements</h2>
+        <p class="highlight">This paragraph is highlighted.</p>
+        <p>This is a <span class="info">span inside a paragraph</span>.</p>
+    </section>
+
+    <section id="lists">
+        <h2>Lists</h2>
+        <ul>
+            <li>First item in unordered list</li>
+            <li>Second item with <a href="https://example.com">link</a></li>
+        </ul>
+        <ol>
+            <li>First item in ordered list</li>
+            <li>Second item with <span class="highlight">highlighted text</span></li>
+        </ol>
+    </section>
+
+    <section id="tables">
+        <h2>Tables</h2>
+        <table>
+            <tr>
+                <th>Header 1</th>
+                <th>Header 2</th>
+            </tr>
+            <tr>
+                <td>Data 1</td>
+                <td>Data 2</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="info">Cell with colspan</td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="nested-elements">
+        <h2>Nested Elements</h2>
+        <div class="nested">
+            <p>Nested paragraph 1 with <span class="highlight">highlight</span>.</p>
+            <div class="nested">
+                <p>Double nested paragraph with <a href="http://example.com/nested">link</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="forms">
+        <h2>Forms</h2>
+        <form action="/submit" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </section>
+
+    <section id="images">
+        <h2>Images</h2>
+        <img src="image1.jpg" alt="First image" class="info">
+        <img src="image2.jpg" alt="Second image" class="highlight">
+    </section>
+
+{% endblock %}
