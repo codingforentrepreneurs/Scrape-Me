@@ -1,0 +1,11 @@
+[[build.env]]
+name = "DISABLE_COLLECTSTATIC"
+value = "1"
+
+[[build.env]]
+name =  "GOOGLE_RUNTIME_VERSION"
+value = "3.11.7"
+
+[[build.env]]
+name = "GOOGLE_ENTRYPOINT"
+value = "python app.py ${PORT:-8183}"
