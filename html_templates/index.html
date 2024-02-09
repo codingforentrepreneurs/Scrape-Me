@@ -1,69 +1,69 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Welcome to Scrape Me.</h1>
-<p>This site is a series of elements to help you practice web scraping.</p>
+<h1 class="text-3xl font-bold">Welcome to Scrape Me.</h1>
+<p class="mb-4">This site is a series of elements to help you practice web scraping.</p>
 
-    <section id="text-elements">
-        <h2>Text Elements</h2>
-        <p class="highlight">This paragraph is highlighted.</p>
-        <p>This is a <span class="info">span inside a paragraph</span>.</p>
-    </section>
+<section id="text-elements" class="mb-4">
+    <h2 class="text-2xl font-semibold">Text Elements</h2>
+    <p class="bg-yellow-100 p-2">This paragraph is highlighted.</p>
+    <p>This is a <span class="text-blue-500">span inside a paragraph</span>.</p>
+</section>
 
-    <section id="lists">
-        <h2>Lists</h2>
-        <ul>
-            <li>First item in unordered list</li>
-            <li>Second item with <a href="https://example.com">link</a></li>
-        </ul>
-        <ol>
-            <li>First item in ordered list</li>
-            <li>Second item with <span class="highlight">highlighted text</span></li>
-        </ol>
-    </section>
+<section id="lists" class="mb-4">
+    <h2 class="text-2xl font-semibold">Lists</h2>
+    <ul class="list-disc pl-5">
+        <li>First item in unordered list</li>
+        <li>Second item with <a href="/fake/blog/" class="text-blue-500 underline">link</a></li>
+    </ul>
+    <ol class="list-decimal pl-5">
+        <li>First item in ordered list</li>
+        <li>Second item with <span class="bg-yellow-100">highlighted text</span></li>
+    </ol>
+</section>
 
-    <section id="tables">
-        <h2>Tables</h2>
-        <table>
-            <tr>
-                <th>Header 1</th>
-                <th>Header 2</th>
-            </tr>
-            <tr>
-                <td>Data 1</td>
-                <td>Data 2</td>
-            </tr>
-            <tr>
-                <td colspan="2" class="info">Cell with colspan</td>
-            </tr>
-        </table>
-    </section>
+<section id="tables" class="mb-4">
+    <h2 class="text-2xl font-semibold">Tables or <a href="/fake/table/" class="text-blue-500 underline">this more filled out one</a> </h2>
+    <table class="table-auto w-full">
+        <tr>
+            <th class="border px-4 py-2">Header 1</th>
+            <th class="border px-4 py-2">Header 2</th>
+        </tr>
+        <tr>
+            <td class="border px-4 py-2">Data 1</td>
+            <td class="border px-4 py-2">Data 2</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="border px-4 py-2 text-blue-500">Cell with colspan</td>
+        </tr>
+    </table>
+</section>
 
-    <section id="nested-elements">
-        <h2>Nested Elements</h2>
-        <div class="nested">
-            <p>Nested paragraph 1 with <span class="highlight">highlight</span>.</p>
-            <div class="nested">
-                <p>Double nested paragraph with <a href="/soup">link</a>.</p>
-            </div>
+<section id="nested-elements" class="mb-4">
+    <h2 class="text-2xl font-semibold">Nested Elements</h2>
+    <div class="p-4">
+        <p>Nested paragraph 1 with <span class="bg-yellow-100">highlight</span>.</p>
+        <div class="p-4">
+            <p>Double nested paragraph with <a href="/timestamp/" class="text-blue-500 underline">link</a>.</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="forms">
-        <h2>Forms</h2>
-        <form action="/submit" method="post">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="Jon Snow"><br><br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="mrknownothing@winterfell.stark"><br><br>
-            <input type="submit" value="Submit">
-        </form>
-    </section>
+<section id="forms" class="mb-4">
+    <h2 class="text-2xl font-semibold">Forms</h2>
+    <form action="/submit" method="post" class="flex flex-col space-y-2">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="Jon Snow" class="border rounded px-2 py-1">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="mrknownothing@winterfell.stark" class="border rounded px-2 py-1">
+        <input type="submit" value="Submit" class="bg-blue-500 text-white rounded px-4 py-2 cursor-pointer hover:bg-blue-700">
+    </form>
+</section>
 
-    <section id="images">
-        <h2>Images</h2>
-        <img width="400" height="224" src="/static/image1.png" alt="First image" class="info">
-        <img width="400" height="224" src="/static/image2.png" alt="Second image" class="highlight">
-    </section>
+<section id="images" class="mb-4">
+    <h2 class="text-2xl font-semibold">Images</h2>
+    <img width="400" height="224" class="w-96 h-auto text-blue-500" src="/static/image1.png" alt="First image">
+    <img width="400" height="224" class="w-96 h-auto bg-yellow-100" src="/static/image2.png" alt="Second image">
+</section>
 
 {% endblock %}

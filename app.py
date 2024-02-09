@@ -56,11 +56,35 @@ settings.configure(
     ],
 )
 
-default_context = {
-    "title": "Django HTML Templates",
-    "description": "A collection of HTML templates for Django",
-    "timestamp": timezone.now(),
-}
+
+def generate_blog_post(fake):
+    return {
+        "title": fake.sentence(nb_words=6),
+        "author": fake.name(),
+        "slug": fake.slug(),
+        "pub_date": fake.date(),
+        "content": "\n\n".join(fake.paragraphs(nb=random.randint(3, 10))),
+    }
+
+
+def fake_blog_post_list_view(request):
+    fake = Faker()
+    max_entries = request.GET.get("max-entries", 10)
+    blog_posts = [generate_blog_post(fake) for _ in range(int(max_entries))]
+    context = {
+        "object_list": blog_posts,
+    }
+    return render(request, "fake/blog/list.html", context)
+
+
+def fake_blog_post_detail_view(request, slug=None):
+    fake = Faker()
+    instance = generate_blog_post(fake)
+    context = {
+        "instance": instance,
+        "slug": slug,
+    }
+    return render(request, "fake/blog/detail.html", context)
 
 
 def fake_table_view(request):
@@ -84,6 +108,12 @@ def fake_table_view(request):
 
 template_mapping = {}
 
+default_context = {
+    "title": "Django HTML Templates",
+    "description": "A collection of HTML templates for Django",
+    "timestamp": timezone.now(),
+}
+
 
 def render_template(request, *args, **kwargs):
     path_as_key = request.path
@@ -95,6 +125,8 @@ def render_template(request, *args, **kwargs):
 
 routes = [
     path("fake/table/", fake_table_view),
+    path("fake/blog/", fake_blog_post_list_view),
+    path("fake/blog/<slug:slug>/", fake_blog_post_detail_view),
 ]
 for doc in HTML_TEMPLATES.glob("**/*.html"):
     # print(doc)

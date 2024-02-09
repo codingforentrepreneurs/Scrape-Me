@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="max-w-2xl mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-2">{{ instance.title }} ({{ slug }})</h1>
+        <p class="text-sm text-gray-500 mb-4">{{ instance.author }} - {{ instance.pub_date }}</p>
+        <p class="text-base text-gray-800">{{ instance.content | linebreaksbr }}</p>
+    </div>
+{% endblock %}

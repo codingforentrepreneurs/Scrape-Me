@@ -4,21 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Scrape Me Base Template">
+    <meta name="author" content="Scrape Me">
+    <meta name="keywords" content="scrape, me, base, template">
     <title>Scrape Me Base Template</title>
-    <style>
-        .highlight { color: red; }
-        .info { background-color: #f0f0f0; padding: 5px; }
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #4CAF50; color: white; }
-        .nested { margin-left: 20px; }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-
+<body class="bg-gray-100">
+    <div class="container mx-auto min-h-screen flex flex-col items-center justify-center p-4">
+   
     {% block content %}
 
     {% endblock %}
+</div>
 
 </body>
 </html>

@@ -1,19 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Fake User Data</h2>
-    <table>
-        <thead>
-            {% for col in header %}
-                <th>{{ col|title }}</th>
-            {% endfor %}
-        </thead>
-        {% for row in table_data %}
-            <tr>
-                {% for k, v in row.items %}
-                    <td>{{ v }}</td>
+    <div class="overflow-x-auto mt-6">
+        <h2 class="text-2xl font-semibold mb-4">Fake User Data</h2>
+        <table class="min-w-full table-auto">
+            <thead class="bg-gray-100">
+                <tr>
+                    {% for col in header %}
+                        <th class="px-4 py-2 text-left text-gray-600">{{ col|title }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody class="text-gray-700">
+                {% for row in table_data %}
+                    <tr class="border-b">
+                        {% for k, v in row.items %}
+                            <td class="px-4 py-2">{{ v }}</td>
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
-            </tr>
-        {% endfor %}
-    </table>
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
