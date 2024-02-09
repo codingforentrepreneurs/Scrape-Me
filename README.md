@@ -5,6 +5,7 @@ The Scrape Me project is made so you can learn web scraping without overloading 
 ## Run it with Docker
 
 ```
+docker pull codingforentrepreneurs/scrape-me:latest
 docker run -p 8101:8101 --env PORT=8101 codingforentrepreneurs/scrape-me:latest
 ```
 
