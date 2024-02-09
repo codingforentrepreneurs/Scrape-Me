@@ -8,7 +8,9 @@ The Scrape Me project is made so you can learn web scraping without overloading 
 docker run -p 8101:8101 --env PORT=8101 codingforentrepreneurs/scrape-me:latest
 ```
 
-## Installation
+## Run with Python 3.10+
+
+### Installation
 
 ```bash
 mkdir -p ~/practice
@@ -36,7 +38,7 @@ pip install -r requirements.txt
 > The `Waitress` package is used over Gunicorn so everyone can run the application easily (especially Windows users).
 
 
-## Usage
+### Usage
 
 ```python
 python app.py
@@ -53,7 +55,7 @@ PORT=8002 python app.py
 ```
 
 
-# HTML
+### HTML
 
 Each template within the `html_templates` directory corresponds to a URL path:
 
@@ -81,7 +83,7 @@ r.text
 ```
 
 
-## Single Page Django App
+### Single Page Django App
 
 This repo also serves as a practical example of creating a single-page Django application. In this case, Django will automatically serve HTML documents (with support for the Django Template Engine) and automatically create url paths for each HTML document.
 
