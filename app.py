@@ -1,3 +1,14 @@
+"""
+This is an example single-page Django application 
+that serves HTML templates from a directory.
+
+To learn more about building single-page Django applications,
+watch https://www.youtube.com/watch?v=F91BTQnxV6w
+
+Waitress is used over Gunicorn to allow
+Windows users to run the application easily.
+"""
+
 import logging
 import os
 import pathlib
