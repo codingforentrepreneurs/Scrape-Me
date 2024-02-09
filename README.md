@@ -27,6 +27,7 @@ Install the requirements
 ```
 pip install -r requirements.txt
 ```
+> The `Waitress` package is used over Gunicorn so everyone can run the application easily (especially Windows users).
 
 
 ## Usage
@@ -72,6 +73,15 @@ import requests
 r = requests.get('http://localhost:8101/')
 r.text
 ```
+
+
+## Single Page Django App
+
+This repo also serves as a practical example of creating a single-page Django application. In this case, Django will automatically serve HTML documents (with support for the Django Template Engine) and automatically create url paths for each HTML document.
+
+To learn more about building single-page Django applications, watch https://www.youtube.com/watch?v=F91BTQnxV6w
+
+Waitress is used over Gunicorn to allow Windows users to run the application easily.
 
 
 ## Contributing
