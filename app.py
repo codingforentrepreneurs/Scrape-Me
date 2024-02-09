@@ -8,10 +8,10 @@ watch https://www.youtube.com/watch?v=F91BTQnxV6w
 Waitress is used over Gunicorn to allow
 Windows users to run the application easily.
 """
-
 import logging
 import os
 import pathlib
+import random
 import sys
 
 import hupper
@@ -21,6 +21,7 @@ from django.core.wsgi import get_wsgi_application
 from django.shortcuts import render
 from django.urls import path
 from django.utils import timezone
+from faker import Faker
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -40,6 +41,7 @@ settings.configure(
     ROOT_URLCONF=__name__,
     MIDDLEWARE=[
         "django.middleware.security.SecurityMiddleware",
+        "django.contrib.sessions.middleware.SessionMiddleware",
         "whitenoise.middleware.WhiteNoiseMiddleware",
     ],
     STATICFILES_DIRS=STATICFILES_DIRS,
@@ -61,6 +63,25 @@ default_context = {
 }
 
 
+def fake_table_view(request):
+    table_data = []
+    header = ["id", "name", "email", "phone", "address"]
+    max_entries = request.GET.get("max-entries", 50)
+    for i, _ in enumerate(range(int(max_entries))):
+        fake = Faker()
+        table_data.append(
+            {
+                "id": i + 1 * random.randint(1, 10_000),
+                "name": fake.name(),
+                "email": fake.email(),
+                "phone": fake.phone_number(),
+                "address": fake.address(),
+            }
+        )
+    context = {"table_data": table_data, "header": header}
+    return render(request, "fake/table.html", context)
+
+
 template_mapping = {}
 
 
@@ -72,7 +93,9 @@ def render_template(request, *args, **kwargs):
     return render(request, template_name, default_context)
 
 
-routes = []
+routes = [
+    path("fake/table/", fake_table_view),
+]
 for doc in HTML_TEMPLATES.glob("**/*.html"):
     # print(doc)
     name = f"{doc.name}_view"

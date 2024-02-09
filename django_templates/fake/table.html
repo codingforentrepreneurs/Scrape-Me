@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Fake User Data</h2>
+    <table>
+        <thead>
+            {% for col in header %}
+                <th>{{ col|title }}</th>
+            {% endfor %}
+        </thead>
+        {% for row in table_data %}
+            <tr>
+                {% for k, v in row.items %}
+                    <td>{{ v }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
