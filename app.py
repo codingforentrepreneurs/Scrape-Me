@@ -1,5 +1,5 @@
 """
-This is an example single-page Django application 
+This is an example single-page Django application
 that serves HTML templates from a directory.
 
 To learn more about building single-page Django applications,
