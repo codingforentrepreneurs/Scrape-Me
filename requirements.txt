@@ -1,2 +1,4 @@
 Django
 waitress
+whitenoise
+hupper

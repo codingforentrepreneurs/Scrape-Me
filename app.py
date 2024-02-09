@@ -14,6 +14,7 @@ import os
 import pathlib
 import sys
 
+import hupper
 from django.conf import settings
 from django.core.management.utils import get_random_secret_key
 from django.core.wsgi import get_wsgi_application
@@ -29,12 +30,21 @@ SECRET_KEY = get_random_secret_key()
 BASE_DIR = pathlib.Path(__file__).resolve().parent
 DJANGO_TEMPLATES = BASE_DIR / "django_templates"
 HTML_TEMPLATES = BASE_DIR / "html_templates"
+STATICFILES_DIRS = [HTML_TEMPLATES]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 settings.configure(
     DEBUG=True,
     SECRET_KEY=f"{SECRET_KEY}",
     ALLOWED_HOSTS=["*"],
     ROOT_URLCONF=__name__,
+    MIDDLEWARE=[
+        "django.middleware.security.SecurityMiddleware",
+        "whitenoise.middleware.WhiteNoiseMiddleware",
+    ],
+    STATICFILES_DIRS=STATICFILES_DIRS,
+    STATICFILES_STORAGE=STATICFILES_STORAGE,
+    STATIC_URL="/static/",
     APPEND_SLASH=True,
     TEMPLATES=[
         {
@@ -88,7 +98,23 @@ urlpatterns = routes
 
 application = get_wsgi_application()
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
+#     try:
+#         from waitress import serve
+#     except ImportError as exc:
+#         raise ImportError(
+#             "Couldn't import Waitress. Are you sure it's installed and "
+#             "available on your PYTHONPATH environment variable? Did you "
+#             "forget to activate a virtual environment?"
+#         ) from exc
+#     port = os.environ.get("PORT") or sys.argv[1] or "8101"
+#     if not port.isdigit():
+#         raise ValueError("Port must be a number")
+#     logger.info(f"Starting development server at http://localhost:{port}/")
+#     serve(application, port=port)
+
+
+def start_server():
     try:
         from waitress import serve
     except ImportError as exc:
@@ -97,8 +123,22 @@ if __name__ == "__main__":
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
-    port = os.environ.get("PORT") or sys.argv[1] or "8101"
+
+    port = os.environ.get("PORT")
+    if port is None:
+        if len(sys.argv) > 1:
+            port = sys.argv[1]
+        else:
+            port = "8101"
+
     if not port.isdigit():
         raise ValueError("Port must be a number")
+
     logger.info(f"Starting development server at http://localhost:{port}/")
+    logger.info("Using hupper to watch for file changes. Hit CTRL-C to stop.")
     serve(application, port=port)
+
+
+if __name__ == "__main__":
+    reloader = hupper.start_reloader("app.start_server")
+    start_server()
