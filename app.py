@@ -98,21 +98,6 @@ urlpatterns = routes
 
 application = get_wsgi_application()
 
-# if __name__ == "__main__":
-#     try:
-#         from waitress import serve
-#     except ImportError as exc:
-#         raise ImportError(
-#             "Couldn't import Waitress. Are you sure it's installed and "
-#             "available on your PYTHONPATH environment variable? Did you "
-#             "forget to activate a virtual environment?"
-#         ) from exc
-#     port = os.environ.get("PORT") or sys.argv[1] or "8101"
-#     if not port.isdigit():
-#         raise ValueError("Port must be a number")
-#     logger.info(f"Starting development server at http://localhost:{port}/")
-#     serve(application, port=port)
-
 
 def start_server():
     try:
